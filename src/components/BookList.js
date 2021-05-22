@@ -1,5 +1,12 @@
 import React from 'react'
-import { StyleSheet, View, Text, FlatList } from 'react-native'
+import {
+  StyleSheet,
+  View,
+  Text,
+  FlatList,
+  TouchableOpacity
+} from 'react-native'
+import { withNavigation } from 'react-navigation'
 import books from '../../data/books.json'
 const BookList = props => {
   return (
@@ -7,7 +14,13 @@ const BookList = props => {
       <FlatList
         data={books}
         renderItem={({ item }) => (
-          <Text style={styles.textStyle}>{item.title}</Text>
+          <TouchableOpacity
+            onPress={() => {
+              props.navigation.navigate('BookDetail')
+            }}
+          >
+            <Text style={styles.textStyle}>{item.title}</Text>
+          </TouchableOpacity>
         )}
         keyExtractor={book => book.title}
       />
@@ -21,4 +34,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default BookList
+export default withNavigation(BookList)
