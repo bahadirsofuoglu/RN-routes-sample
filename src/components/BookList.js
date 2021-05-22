@@ -6,13 +6,19 @@ const BookList = props => {
     <View>
       <FlatList
         data={books}
-        renderItem={({ item }) => <Text>{item.title}</Text>}
+        renderItem={({ item }) => (
+          <Text style={styles.textStyle}>{item.title}</Text>
+        )}
         keyExtractor={book => book.title}
       />
     </View>
   )
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  textStyle: {
+    marginVertical: 50
+  }
+})
 
 export default BookList
